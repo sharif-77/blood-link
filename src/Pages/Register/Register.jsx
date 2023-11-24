@@ -10,7 +10,6 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const Register = () => {
   const { registerUserWithEmailPassword, update,signInWithGoogle,user,setUser } = useContext(AuthContext);
   const [seePassword, setSeePassword] = useState(false);
-  const [image,setImage]=useState(null)
 
   const navigate = useNavigate();
   const axiosPublic=useAxiosPublic()
@@ -24,13 +23,13 @@ const imageHostingApi=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
     const password = e.target.password.value;
     const imageFile={image:photoUrl[0]}
 
-    const res= await axiosPublic.post(imageHostingApi,imageFile,{
+    const imageRes= await axiosPublic.post(imageHostingApi,imageFile,{
       headers:{
         'content-type':'multipart/form-data'
       }
     })
-    if (res?.data?.data?.display_url) {
-      console.log(res?.data?.data?.display_url);
+    if (imageRes?.data?.data?.display_url) {
+      console.log(imageRes?.data?.data?.display_url);
       if (!/(?=.*[A-Z])(?=.*[@$!%*#?&]).{6,}/.test(password)) {
         toast.error(
           "Password must have at least 6 characters, one uppercase letter, and one special character"
@@ -42,11 +41,11 @@ const imageHostingApi=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
         .then((res) => {
           update(res.user, {
             displayName: name,
-            photoURL: res?.data?.data?.display_url
+            photoURL: imageRes?.data?.data?.display_url
           })
             .then(() => {
               setUser({...user,displayName: name,
-                photoURL: res?.data?.data?.display_url})
+                photoURL: imageRes?.data?.data?.display_url})
             })
             .catch();
           toast.success(`Registration SuccessFull`);
@@ -55,11 +54,11 @@ const imageHostingApi=`https://api.imgbb.com/1/upload?key=${image_hosting_key}`
         .catch((err) => {
           toast.error(`${err.message}`);
         });
-      console.log(res?.data?.data?.display_url);
+      console.log(imageRes?.data?.data?.display_url);
 
     }
 
-    console.log(res.data);
+    console.log(imageRes.data);
 
     // console.log(name,imageFile, email, password);
 

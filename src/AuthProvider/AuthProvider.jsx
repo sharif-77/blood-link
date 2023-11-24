@@ -14,6 +14,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
         const unSubscribe=onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
+            console.log(currentUser);
             if (currentUser) {
                 const email={email:currentUser.email}
                 axios.post('https://wander-inn-server.vercel.app/jwt',email,{withCredentials:true})
