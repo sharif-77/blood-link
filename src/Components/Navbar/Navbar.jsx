@@ -15,12 +15,14 @@ const Navbar = () => {
                     
                 </div>
                 
-               <div className="uppercase grid grid-cols-4  md:flex text-xs lg:text-base overflow-hidden" >
-               <NavLink to='/' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-5 rounded-md font-bold `}>Home</NavLink>
-               <NavLink to='/blog' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-5 rounded-md font-bold `}>Blog</NavLink>
-               <NavLink to='/register' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-5 rounded-md font-bold `}>Register</NavLink>
-               <NavLink to='/dashboard' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-5 rounded-md font-bold `}>Dashboard</NavLink>
-               <NavLink to='/donate' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-5 rounded-md font-bold `}>Donate</NavLink>
+               <div className="uppercase grid grid-cols-3  md:flex text-xs lg:text-base overflow-hidden" >
+               <NavLink to='/' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Home</NavLink>
+               <NavLink to='/blog' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Blog</NavLink>
+               <NavLink to='/register' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Register</NavLink>
+              {
+                user && <NavLink to='/dashboard' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Dashboard</NavLink>
+              }
+               <NavLink to='/donate' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Donate</NavLink>
                
                </div>
 
