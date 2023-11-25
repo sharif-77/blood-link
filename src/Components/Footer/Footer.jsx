@@ -5,10 +5,10 @@ const Footer = () => {
       <div className="flex flex-col items-center justify-center gap-1">
         <img
           className="w-16 rounded-full"
-          src="https://i.ibb.co/2NZJyW9/3d7581-6a6d532daaa743f08b822f674fd45f29-mv2-1.png"
+          src="https://i.ibb.co/fntVn8W/download-2.png"
           alt=""
         />
-        <span className="text-xl font-bold uppercase ">WanderInn</span>
+        <span className="text-xl font-bold uppercase ">BloodLink</span>
       </div>
       <nav className="flex flex-col">
         <header className="footer-title">Company</header>

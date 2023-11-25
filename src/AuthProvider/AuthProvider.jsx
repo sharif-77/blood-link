@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 import auth from './../Firebase/firebase.config';
+import useAxiosSecure from './../hooks/useAxiosSecure';
 export const AuthContext=createContext() 
 
 
@@ -10,15 +10,15 @@ const AuthProvider = ({children}) => {
     const [user,setUser]=useState(null)
     const [loading,setLoading]=useState(true)
     const [mode,setMode]=useState(false)
+const axios=useAxiosSecure()
 
     useEffect(()=>{
         const unSubscribe=onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
-            console.log(currentUser);
             if (currentUser) {
                 const email={email:currentUser.email}
-                axios.post('https://wander-inn-server.vercel.app/jwt',email,{withCredentials:true})
-                .then((res)=>{})
+                axios.post('/jwt',email)
+                .then((res)=>{console.log(res);})
 
             }
             setLoading(false)
@@ -28,7 +28,7 @@ const AuthProvider = ({children}) => {
             unSubscribe()
           }
 
-    },[])
+    },[axios])
 
     const googleProvider = new GoogleAuthProvider();
     const signInWithGoogle=()=>{
