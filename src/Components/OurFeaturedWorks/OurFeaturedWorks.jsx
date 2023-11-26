@@ -6,7 +6,6 @@ const OurFeaturedWorks = () => {
   const axios = useAxiosPublic();
   useEffect(() => {
     axios("/featured").then((res) => {
-      console.log(res);
       setFeaturedData(res.data);
     });
   }, [axios]);

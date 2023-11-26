@@ -82,8 +82,17 @@ const Register = () => {
           bloodGroup,
           district,
           upazila,
-          status:'active'
+          status:'active',
+          role:'donor'
+
+
         }
+
+        axiosPublic.post('/users',createUser)
+        .then(res=>{
+          console.log(res.data);
+        })
+
 
 
 
