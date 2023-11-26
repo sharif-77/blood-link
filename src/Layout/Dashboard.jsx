@@ -10,7 +10,7 @@ const Dashboard = () => {
     return (
         <div className="w-4/5 mx-auto pt-5">
         <main className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <div className="lg:col-span-3   bg-[#D1A054] text-white p-2">
+          <div className="lg:col-span-3 rounded-md font-bold   bg-[#ff4a4a] text-white p-2">
             {
               role==='admin'?<AdminRoutes/>:role==='donor'?<DonorRoutes/>:<VolunteerRoutes/>
             }

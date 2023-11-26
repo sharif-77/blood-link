@@ -15,10 +15,9 @@ const useUserRole = () => {
         .get(`/user-role/${email}`)
         .then((res) => {
           setRole(res.data.role);
-          console.log(res.data.role);
         })
         .catch((error) => {
-          console.error("Error fetching user role:", error);
+          console.error( error);
         });
     }
   }, [email, axios]);

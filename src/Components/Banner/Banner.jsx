@@ -7,9 +7,9 @@ const Banner = () => {
         <div className="flex-1 flex flex-col  items-center justify-center gap-10">
             <div><p className="capitalize text-6xl font-bold">donate blood, <br /> save live!</p></div>
           <div className="flex gap-2 flex-col lg:flex-row justify-between items-center">
-            <button className="btn btn-accent bg-white px-10">
+            <Link to='/register' className="btn btn-accent bg-white px-10">
               Join As A Donor
-            </button>
+            </Link>
             <Link to='/search' className="btn btn-accent bg-white px-10 ">
             Search Donors
             </Link>

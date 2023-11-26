@@ -18,7 +18,7 @@ const axios=useAxiosSecure()
             if (currentUser) {
                 const email={email:currentUser.email}
                 axios.post('/jwt',email)
-                .then((res)=>{console.log(res);})
+                .then((res)=>{})
 
             }
             setLoading(false)

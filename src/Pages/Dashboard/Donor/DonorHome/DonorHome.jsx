@@ -1,7 +1,14 @@
+import Welcome from "../../../../Components/Welcome/Welcome";
+import useAuth from "../../../../hooks/useAuth";
+
 const DonorHome = () => {
+    const {user}=useAuth()
+
     return(
         <div>
-             <p> HELLO I Am DonorHome </p>
+            <div>
+                <Welcome heading={user?.displayName}/>
+            </div>
         </div>
     )}
 export default DonorHome;
