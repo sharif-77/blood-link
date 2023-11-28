@@ -20,7 +20,7 @@ const Navbar = () => {
                <NavLink to='/blog' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Blog</NavLink>
                <NavLink to='/register' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Register</NavLink>
             
-               <NavLink to='/donation-requests' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Blood Donation request</NavLink>
+               <NavLink to='/all-pending-donation-requests' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Blood Donation requests</NavLink>
 
                {
                 user && <NavLink to='/dashboard' className={({isActive})=>`${isActive&&`  bg-[#f42a45] text-white `} py-2 px-3 text-center rounded-md font-bold `}>Dashboard</NavLink>

@@ -3,8 +3,13 @@ import toast from "react-hot-toast";
 import useUpazilaData from "../../../../hooks/useUpazilaData";
 import useDistrictData from "../../../../hooks/useDistrictData";
 import useAuth from "../../../../hooks/useAuth";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useUserStatus from "../../../../hooks/useUserStatus";
 
 const CreateBloodDonationRequest = () => {
+  const axios=useAxiosPublic()
+  const status=useUserStatus()
+  console.log(status);
   const [upazilaData] = useUpazilaData();
   const [districtData] = useDistrictData();
 
@@ -12,12 +17,38 @@ const CreateBloodDonationRequest = () => {
 
   const handleDonateRequest = async (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const bloodGroup = e.target.bloodGroup.value;
-    const district = e.target.district.value;
-    const upazila = e.target.upazila.value;
-    console.log(name, email, bloodGroup, district, upazila);
+    const recipientName = e.target.recipientName.value;
+    const recipientBloodGroup = e.target.bloodGroup.value;
+    const recipientDistrict = e.target.district.value;
+    const recipientUpazila = e.target.upazila.value;
+    const hospitalName = e.target.hospitalName.value;
+    const fullAddress = e.target.fullAddress.value;
+    const donationDate = e.target.donationDate.value;
+    const donationTime = e.target.donationTime.value;
+    const requestMessage = e.target.requestMessage.value;
+    console.log(recipientName, recipientBloodGroup, recipientDistrict, recipientUpazila,hospitalName,fullAddress,donationDate,donationTime);
+
+    const donationRequest={
+      requesterName:user?.displayName,
+      requesterEmail:user?.email,
+      recipientName,
+      recipientBloodGroup,
+      recipientDistrict,
+      recipientUpazila,
+      hospitalName,
+      fullAddress,
+      donationDate,
+      donationTime,
+      requestMessage,
+      donationStatus:'pending'
+
+    }
+
+    axios.post('/blood-donation-request',donationRequest)
+    .then(res=>{
+      console.log(res.data);
+    })
+
   };
 
   return (
@@ -107,7 +138,7 @@ const CreateBloodDonationRequest = () => {
             <label htmlFor="donationDate">Donation Date</label>
             <input
               className="bg-[#F3F3F3] text-black py-2 px-4 rounded-md"
-              type="text"
+              type="date"
               name="donationDate"
               id="donationDate"
               placeholder="Donation Date"
@@ -121,6 +152,17 @@ const CreateBloodDonationRequest = () => {
               name="donationTime"
               id="donationTime"
               placeholder="Donation Time"
+            />
+          </div>
+          <div className="flex flex-col gap-2">
+            <label htmlFor="requestMessage">Request Message</label>
+            <textarea
+              className="bg-[#F3F3F3] text-black py-2 px-4 rounded-md resize-none"
+              type="text"
+              name="requestMessage"
+              id="requestMessage"
+              placeholder="Request Message"
+              
             />
           </div>
 

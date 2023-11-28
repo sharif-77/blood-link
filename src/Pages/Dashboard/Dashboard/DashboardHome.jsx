@@ -11,7 +11,7 @@ const DashboardHome = () => {
         <div>
             
             {
-              role==='admin'?<AdminHome/>:role==='donor'?<DonorHome/>:<VolunteerHome/>
+              role==='admin'?<AdminHome/>:role==='volunteer'?<VolunteerHome/>:<DonorHome/>
             }
             
         </div>
