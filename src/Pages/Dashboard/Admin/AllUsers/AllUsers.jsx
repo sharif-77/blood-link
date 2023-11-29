@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
   const [totalUser, setTotalUser] = useState(0);
   const [userPerPage, setuserPerPage] = useState(2);
   const [currentPageNumber, setCurrentPageNumber] = useState(0);
-  console.log(currentPageNumber);
 
   const totalPage = Math.ceil(totalUser / userPerPage);
 
@@ -16,8 +16,7 @@ const AllUsers = () => {
   const axios = useAxiosSecure();
 
   useEffect(() => {
-    axios
-      .get(`/all-users?page=${currentPageNumber}&limit=${userPerPage}`)
+    axios.get(`/all-users?page=${currentPageNumber}&limit=${userPerPage}`)
       .then((res) => {
         setAllUsers(res.data);
       });
@@ -25,10 +24,79 @@ const AllUsers = () => {
 
   useEffect(() => {
     axios.get("/usersCount").then((res) => {
-      console.log(res.data.result);
       setTotalUser(res.data.result);
     });
   }, [axios]);
+
+  const handleBlock = (id)=>{
+    console.log('block',id);
+    const data = {
+      status: "blocked",
+      
+    };
+    axios.patch(`/update-user-status/${id}`, data).then((res) => {
+      if (res?.data?.modifiedCount) {
+        Swal.fire({
+            title: "Blocked",
+            icon: "success"
+          });
+          window.location.reload();
+  
+      }
+    });
+
+  }
+  const handleUnBlock = (id)=>{
+    const data = {
+      status: "active",
+      
+    };
+    axios.patch(`/update-user-status/${id}`, data).then((res) => {
+      if (res?.data?.modifiedCount) {
+        Swal.fire({
+            title: "unBlocked",
+            icon: "success"
+          });
+          window.location.reload();
+  
+      }
+    });
+
+  }
+  const handleVolunteer = (id)=>{
+    const data = {
+      role: "volunteer",
+      
+    };
+    axios.patch(`/update-user-role/${id}`, data).then((res) => {
+      if (res?.data?.modifiedCount) {
+        Swal.fire({
+            title: "Updated To Volunteer",
+            icon: "success"
+          });
+          window.location.reload();
+  
+      }
+    });
+
+  }
+  const handleAdmin = (id)=>{
+    const data = {
+      role: "admin",
+      
+    };
+    axios.patch(`/update-user-role/${id}`, data).then((res) => {
+      if (res?.data?.modifiedCount) {
+        Swal.fire({
+            title: "Updated To Admin",
+            icon: "success"
+          });
+          window.location.reload();
+  
+      }
+    });
+
+  }
 
   return (
     <div>
@@ -38,11 +106,7 @@ const AllUsers = () => {
             {/* head */}
             <thead>
               <tr>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+            
                 <th>Image</th>
                 <th>Email</th>
                 <th>Name</th>
@@ -56,11 +120,7 @@ const AllUsers = () => {
             <tbody>
               {allUsers.map((user) => (
                 <tr key={user._id}>
-                  <th>
-                    <label>
-                      <input type="checkbox" className="checkbox" />
-                    </label>
-                  </th>
+               
                   <td>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
@@ -79,33 +139,34 @@ const AllUsers = () => {
                   <td>{user?.name}</td>
                   <td>{user?.status}</td>
                   <td>
-                    <select name="" id="">
+              
                       {user?.status === "active" ? (
-                        <option value="">
-                          <button className="btn btn-error text-white font-bold">
+                        
+                          <button onClick={()=>handleBlock(user._id)} className="btn btn-error text-white font-bold">
                             Block
                           </button>
-                        </option>
+                      
                       ) : (
-                        <option value="">
-                          <button className="btn btn-error text-white font-bold">
+                        
+                          <button onClick={()=>handleUnBlock(user._id)} className="btn btn-error text-white font-bold">
                             UnBlock
                           </button>
-                        </option>
+                       
                       )}
+                      </td>
 
-                      <option value="">
-                        <button className="btn btn-error text-white font-bold">
+                      
+                      <td>  <button onClick={()=>handleVolunteer(user._id)} className="btn btn-error text-white font-bold">
                           Make volunteer
-                        </button>
-                      </option>
-                      <option value="">
-                        <button className="btn btn-error text-white font-bold">
+                        </button></td>
+                   
+                      <td>
+                        <button onClick={()=>handleAdmin(user._id)} className="btn btn-error text-white font-bold">
                           Make Admin
-                        </button>
-                      </option>
-                    </select>
-                  </td>
+                        </button></td>
+                   
+                    
+                  
                 </tr>
               ))}
             </tbody>

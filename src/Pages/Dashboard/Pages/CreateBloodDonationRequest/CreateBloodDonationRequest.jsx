@@ -26,7 +26,7 @@ const CreateBloodDonationRequest = () => {
     const donationDate = e.target.donationDate.value;
     const donationTime = e.target.donationTime.value;
     const requestMessage = e.target.requestMessage.value;
-    console.log(recipientName, recipientBloodGroup, recipientDistrict, recipientUpazila,hospitalName,fullAddress,donationDate,donationTime);
+    
 
     const donationRequest={
       requesterName:user?.displayName,
@@ -47,6 +47,9 @@ const CreateBloodDonationRequest = () => {
     axios.post('/blood-donation-request',donationRequest)
     .then(res=>{
       console.log(res.data);
+      if (res?.data.insertedId) {
+        toast.success('Request Created')
+      }
     })
 
   };

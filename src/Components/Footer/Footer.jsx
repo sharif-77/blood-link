@@ -11,7 +11,7 @@ const Footer = () => {
         <span className="text-xl font-bold uppercase ">BloodLink</span>
       </div>
       <nav className="flex flex-col">
-        <header className="footer-title">Company</header>
+        <header className="footer-title">Agency</header>
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>
         <a className="link link-hover">Jobs</a>

@@ -93,7 +93,7 @@ const Login = () => {
       {/* google */}
 
       
-       <div>
+       {/* <div>
        <div className="relative text-center">
           <div className="before:absolute before:w-32 md:before:w-40 lg:before:w-60 before:h-[2px] before:bg-white before:left-0 before:top-1/2 before:-translate-y-1/2"></div>
           <span className=" px-4 py-2">Or</span>
@@ -106,7 +106,7 @@ const Login = () => {
             <FcGoogle className="text-3xl " /> <span>Continue with Google</span>
           </button>
         </div>
-       </div>
+       </div> */}
 
 
       </div>
