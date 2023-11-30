@@ -100,6 +100,7 @@ const CheckoutForm = () => {
         <p className="text-red-700">{error}</p>
       </form>
     </div>
+    
   );
 };
 
