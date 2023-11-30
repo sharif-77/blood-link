@@ -95,7 +95,10 @@ const DonorHome = () => {
                 <th>Location</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Donor Name And Email</th>
+                {myReqs.map(
+                  (req) =>
+                    req.donorName && <th key={req._id}>Donor Name And Email</th>
+                )}
                 <th></th>
                 <th></th>
                 <th></th>

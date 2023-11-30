@@ -9,6 +9,7 @@ const DonorRoutes = () => {
                <Link to='/dashboard' className="text-center shadow-md py-2 px-3 active:bg-green-600 focus:bg-green-600">Donor Home</Link>
 
 
+               <NavLink to='/dashboard/profile' className={({isActive})=>`${isActive&&` bg-green-600 text-white `} py-2 px-3 text-center rounded-md font-bold shadow-md  `}>Profile</NavLink>
                <NavLink to='/dashboard/my-donation-requests-user' className={({isActive})=>`${isActive&&` bg-green-600 text-white `} py-2 px-3 text-center rounded-md font-bold shadow-md  `}>my donation requests</NavLink>
                <NavLink to='/dashboard/create-donation-request' className={({isActive})=>`${isActive&&` bg-green-600 text-white `} py-2 px-3 text-center rounded-md font-bold shadow-md  `}>Create donation request</NavLink>
                <div className="grid h-[2px] card bg-base-300 rounded-box place-items-center my-5"></div>

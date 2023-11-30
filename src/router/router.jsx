@@ -4,7 +4,6 @@ import Home from "../Pages/Home/Home";
 import Login from "./../Pages/Login/Login";
 import Register from "./../Pages/Register/Register";
 import Error from "../Pages/Error/Error";
-import Search from "../Pages/Search/Search";
 import Dashboard from "../Layout/Dashboard";
 import DashboardHome from "../Pages/Dashboard/Dashboard/DashboardHome";
 import MyAllBloodDonationRequests from "../Pages/Dashboard/Donor/Pages/MyAllBloodDonationRequests/MyAllBloodDonationRequests";
@@ -18,6 +17,12 @@ import PrivetRoute from './../PrivetRoute/PrivetRoute';
 import ContentManagement from "../Pages/Dashboard/Admin/ContentManagement/ContentManagement";
 import UpdateDonationReq from "../Pages/Dashboard/Donor/Pages/UpdateDonationReq/UpdateDonationReq";
 import AddBlog from './../Pages/Dashboard/Admin/AddBlog/AddBlog';
+import VolunteerProtectedRoute from "../Pages/Dashboard/Volunteer/VolunteerProtectedRoute/VolunteerProtectedRoute";
+import Blog from "../Pages/Blog/Blog";
+import Funding from "../Pages/Funding/Funding";
+import SearchDonor from "../Pages/SearchDonor/SearchDonor";
+import CheckoutForm from "../Pages/Funding/Payment/CheckoutForm";
+import Profile from "../Pages/Dashboard/Pages/Profile/Profile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,13 +34,17 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/blog",
+        element: <Blog />,
+      },
+      {
         path: "/all-pending-donation-requests",
         element: <AllPendingDonationRequests />,
       },
       {
         path: "/blood-donation-req-details/:id",
         loader: ({ params }) =>
-        fetch(`http://localhost:5000/blood-donation-request/${params.id}`),
+        fetch(`https://blood-link-server.vercel.app/blood-donation-request/${params.id}`),
         
         element: <PrivetRoute><BloodDonationRequestDetails /></PrivetRoute>,
       },
@@ -49,8 +58,12 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/search",
-        element: <Search />,
+        path: "/search-donor",
+        element: <SearchDonor />,
+      },
+      {
+        path: "/funding",
+        element:<PrivetRoute> <CheckoutForm /></PrivetRoute>,
       },
  
     ],
@@ -78,7 +91,7 @@ const router = createBrowserRouter([
       {
         path:'/dashboard/update-donation-request/:id',
         loader: ({ params }) =>
-        fetch(`http://localhost:5000/blood-donation-request/${params.id}`),
+        fetch(`https://blood-link-server.vercel.app/blood-donation-request/${params.id}`),
         element:<UpdateDonationReq/>
 
       },
@@ -93,13 +106,23 @@ const router = createBrowserRouter([
 
       },
       {
+        path:'/dashboard/all-blood-donation-requests-volunteer',
+        element:<VolunteerProtectedRoute><AllBloodDonationRequest/></VolunteerProtectedRoute>
+
+      },
+      {
         path:'/dashboard/content-management',
-        element:<AdminProtectedRoute><ContentManagement/></AdminProtectedRoute>
+        element:<ContentManagement/>
 
       },
       {
         path:'/dashboard/content-management/add-blog',
-        element:<AdminProtectedRoute><AddBlog/></AdminProtectedRoute>
+        element:<AddBlog/>
+
+      },
+      {
+        path:'/dashboard/profile',
+        element:<Profile/>
 
       },
     ]

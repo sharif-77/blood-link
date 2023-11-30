@@ -10,7 +10,7 @@ const Banner = () => {
             <Link to='/register' className="btn btn-accent bg-white px-10">
               Join As A Donor
             </Link>
-            <Link to='/search' className="btn btn-accent bg-white px-10 ">
+            <Link to='/search-donor' className="btn btn-accent bg-white px-10 ">
             Search Donors
             </Link>
           </div>
